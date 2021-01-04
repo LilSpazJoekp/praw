@@ -11,7 +11,7 @@ As a result, it is little surprise that a majority of bots on Reddit are powered
 PRAW.
 
 This tutorial will show you how to build a bot that monitors a particular subreddit,
-`/r/AskReddit <https://www.reddit.com/r/AskReddit/>`_, for new submissions containing
+`r/AskReddit <https://www.reddit.com/r/AskReddit/>`_, for new submissions containing
 simple questions and replies with an appropriate link to lmgtfy_ (Let Me Google That For
 You).
 
@@ -76,8 +76,8 @@ that registered the application are required.
     <https://github.com/reddit/reddit/wiki/oauth2-app-types>`_.
 
 
-Step 2: Monitoring New Submissions to /r/AskReddit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 2: Monitoring New Submissions to r/AskReddit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 PRAW provides a convenient way to obtain new submissions to a given subreddit. To
 indefinitely iterate over new submissions to a subreddit add:
