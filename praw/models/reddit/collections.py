@@ -38,23 +38,22 @@ class Collection(RedditBase):
     these attributes will always be present, nor that they will be the only attributes
     present.
 
-    ======================= ==================================================
-    Attribute               Description
-    ======================= ==================================================
-    ``author``              The :class:`.Redditor` who created the collection.
-    ``collection_id``       The UUID of the collection.
-    ``created_at_utc``      Time the collection was created, represented in
-                            `Unix Time`_.
-    ``description``         The collection description.
-    ``last_update_utc``     Time the collection was last updated, represented in
-                            `Unix Time`_.
-    ``link_ids``            A ``list`` of :class:`.Submission` fullnames.
-    ``permalink``           The collection's permalink (to view on the web).
-    ``sorted_links``        An iterable listing of the posts in this collection.
-    ``title``               The title of the collection.
-    ======================= ==================================================
+    =================== =============================================================
+    Attribute           Description
+    =================== =============================================================
+    ``author``          The :class:`.Redditor` who created the collection.
+    ``collection_id``   The UUID of the collection.
+    ``created_at_utc``  Time the collection was created, represented in `Unix Time`_.
+    ``description``     The collection description.
+    ``last_update_utc`` Time the collection was last updated, represented in `Unix
+                        Time`_.
+    ``link_ids``        A ``list`` of :class:`.Submission` fullnames.
+    ``permalink``       The collection's permalink (to view on the web).
+    ``sorted_links``    An iterable listing of the posts in this collection.
+    ``title``           The title of the collection.
+    =================== =============================================================
 
-    .. _Unix Time: https://en.wikipedia.org/wiki/Unix_time
+    .. _unix time: https://en.wikipedia.org/wiki/Unix_time
 
     """
 
@@ -67,8 +66,8 @@ class Collection(RedditBase):
         Provides access to various methods, including
         :meth:`~reddit.collections.CollectionModeration.add_post`,
         :meth:`~reddit.collections.CollectionModeration.delete`,
-        :meth:`~reddit.collections.CollectionModeration.reorder`,
-        and :meth:`~reddit.collections.CollectionModeration.update_title`.
+        :meth:`~reddit.collections.CollectionModeration.reorder`, and
+        :meth:`~reddit.collections.CollectionModeration.update_title`.
 
         Example usage:
 
@@ -107,6 +106,7 @@ class Collection(RedditBase):
         :param _data: Any data associated with the Collection (optional).
         :param collection_id: The ID of the Collection (optional).
         :param permalink: The permalink of the Collection (optional).
+
         """
         if (_data, collection_id, permalink).count(None) != 2:
             raise TypeError(
@@ -240,6 +240,7 @@ class CollectionModeration(PRAWBase):
         """Get a post's fullname.
 
         :param post: A fullname, a Submission, a permalink, or an ID.
+
         :returns: The fullname of the post.
 
         """
@@ -433,6 +434,7 @@ class SubredditCollections(PRAWBase):
 
         :param collection_id: The ID of a Collection (default: None).
         :param permalink: The permalink of a Collection (default: None).
+
         :returns: The specified Collection.
 
         Exactly one of ``collection_id`` and ``permalink`` is required.
@@ -448,7 +450,7 @@ class SubredditCollections(PRAWBase):
             print(collection.title)
             print(collection.description)
 
-            permalink = 'https://www.reddit.com/r/SUBREDDIT/collection/' + uuid
+            permalink = "https://www.reddit.com/r/SUBREDDIT/collection/" + uuid
             collection = subreddit.collections(permalink=permalink)
             print(collection.title)
             print(collection.description)

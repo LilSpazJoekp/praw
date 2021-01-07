@@ -11,16 +11,14 @@ As a result, it is little surprise that a majority of bots on Reddit are powered
 PRAW.
 
 This tutorial will show you how to build a bot that monitors a particular subreddit,
-`/r/AskReddit <https://www.reddit.com/r/AskReddit/>`_, for new submissions containing
+`r/AskReddit <https://www.reddit.com/r/AskReddit/>`_, for new submissions containing
 simple questions and replies with an appropriate link to lmgtfy_ (Let Me Google That For
 You).
 
 There are three key components we will address to perform this task:
 
 1. Monitor new submissions.
-
 2. Analyze the title of each submission to see if it contains a simple question.
-
 3. Reply with an appropriate lmgtfy_ link.
 
 LMGTFY Bot
@@ -32,16 +30,13 @@ simple question that is unlikely to be upvoted or answered by other users.
 Two examples of such questions are:
 
 1. "What is the capital of Canada?"
-
 2. "How many feet are in a yard?"
 
 Once we identify these questions, the LMGTFY Bot will reply to the submission with an
 appropriate lmgtfy_ link. For the example questions those links are:
 
 1. https://lmgtfy.com/?q=What+is+the+capital+of+Canada%3F
-
 2. https://lmgtfy.com/?q=How+many+feet+are+in+a+yard%3F
-
 
 Step 1: Getting Started
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,7 +58,7 @@ an instance of :class:`.Reddit`:
         client_id="CLIENT_ID",
         client_secret="CLIENT_SECRET",
         username="USERNAME",
-        password="PASSWORD"
+        password="PASSWORD",
     )
 
 In addition to the OAuth2 credentials, the username and password of the Reddit account
@@ -75,9 +70,8 @@ that registered the application are required.
     types please see Reddit's wiki page `OAuth2 App Types
     <https://github.com/reddit/reddit/wiki/oauth2-app-types>`_.
 
-
-Step 2: Monitoring New Submissions to /r/AskReddit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 2: Monitoring New Submissions to r/AskReddit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 PRAW provides a convenient way to obtain new submissions to a given subreddit. To
 indefinitely iterate over new submissions to a subreddit add:
@@ -87,6 +81,7 @@ indefinitely iterate over new submissions to a subreddit add:
     subreddit = reddit.subreddit("AskReddit")
     for submission in subreddit.stream.submissions():
         # do something with submission
+        ...
 
 Replace ``AskReddit`` with the name of another subreddit if you want to iterate through
 its new submissions. Additionally multiple subreddits can be specified by joining them
@@ -100,7 +95,6 @@ Now that we have a stream of new submissions to /r/AskReddit, it is time to see 
 titles contain a simple question. We naïvely define a simple question as:
 
 1. It must contain no more than ten words.
-
 2. It must contain one of the phrases "what is", "what are", or "who is".
 
 .. warning::
@@ -113,8 +107,8 @@ First we filter out titles that contain more than ten words:
 
 .. code-block:: python
 
-   if len(submission.title.split()) > 10:
-           return
+    if len(submission.title.split()) > 10:
+        return
 
 We then check to see if the submission's title contains any of the desired phrases:
 
@@ -161,7 +155,7 @@ located:
 
     from urllib.parse import quote_plus
 
-    reply_template = '[Let me google that for you](https://lmgtfy.com/?q={})'
+    reply_template = "[Let me google that for you](https://lmgtfy.com/?q={})"
 
     url_title = quote_plus(submission.title)
     reply_text = reply_template.format(url_title)
@@ -187,23 +181,23 @@ The first thing we should do is put all of our import statements at the top of t
 It is common to list built-in packages before third party ones:
 
 .. include:: ../examples/lmgtfy_bot.py
-   :code: python
-   :end-line: 3
+    :code: python
+    :end-line: 3
 
 Next we extract a few constants that are used in our script:
 
 .. include:: ../examples/lmgtfy_bot.py
-   :code: python
-   :start-line: 4
-   :end-line: 6
+    :code: python
+    :start-line: 4
+    :end-line: 6
 
 We then extract the segment of code pertaining to processing a single submission into
 its own function:
 
 .. include:: ../examples/lmgtfy_bot.py
-   :code: python
-   :start-line: 18
-   :end-line: 33
+    :code: python
+    :start-line: 18
+    :end-line: 33
 
 Observe that we added some comments and a ``print`` call. The ``print`` addition informs
 us every time we are about to reply to a submission, which is useful to ensure the
@@ -215,16 +209,16 @@ script or module. A common way to do that is to move the top-level code to a ``m
 function:
 
 .. include:: ../examples/lmgtfy_bot.py
-   :code: python
-   :start-line: 8
-   :end-line: 16
+    :code: python
+    :start-line: 8
+    :end-line: 16
 
 Finally we need to call ``main`` only in the cases that this script is the one being
 executed:
 
 .. include:: ../examples/lmgtfy_bot.py
-   :code: python
-   :start-line: 35
+    :code: python
+    :start-line: 35
 
 The Complete LMGTFY Bot
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -232,9 +226,8 @@ The Complete LMGTFY Bot
 The following is the complete LMGTFY Bot:
 
 .. literalinclude:: ../examples/lmgtfy_bot.py
-   :language: python
-
+    :language: python
 
 .. _lmgtfy: https://lmgtfy.com/
-.. _OAuth2 Quick Start Example:
-   https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example#first-steps
+
+.. _oauth2 quick start example: https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example#first-steps

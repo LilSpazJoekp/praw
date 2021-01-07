@@ -9,4 +9,4 @@ using in initializing an instance of :class:`~praw.Reddit`. A list of all possib
 scopes can be found in the `reddit API docs <https://www.reddit.com/dev/api/oauth>`_
 
 .. literalinclude:: ../examples/obtain_refresh_token.py
-   :language: python
+    :language: python

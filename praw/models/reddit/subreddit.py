@@ -79,28 +79,28 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
     :ref:`determine-available-attributes-of-an-object`), there is not a guarantee that
     these attributes will always be present, nor is this list necessarily complete.
 
-    ========================== =========================================================
-    Attribute                  Description
-    ========================== =========================================================
-    ``can_assign_link_flair``  Whether users can assign their own link flair.
-    ``can_assign_user_flair``  Whether users can assign their own user flair.
-    ``created_utc``            Time the subreddit was created, represented in`Unix
-                               Time`_.
-    ``description``            Subreddit description, in Markdown.
-    ``description_html``       Subreddit description, in HTML.
-    ``display_name``           Name of the subreddit.
-    ``id``                     ID of the subreddit.
-    ``name``                   Fullname of the subreddit.
-    ``over18``                 Whether the subreddit is NSFW.
-    ``public_description``     Description of the subreddit, shown in searches and on
-                               the "You must be invited to visit this community" page
-                               (if applicable).
-    ``spoilers_enabled``       Whether the spoiler tag feature is enabled.
-    ``subscribers``            Count of subscribers.
-    ``user_is_banned``         Whether the authenticated user is banned.
-    ``user_is_moderator``      Whether the authenticated user is a moderator.
-    ``user_is_subscriber``     Whether the authenticated user is subscribed.
-    ========================== =========================================================
+    ========================= ==========================================================
+    Attribute                 Description
+    ========================= ==========================================================
+    ``can_assign_link_flair`` Whether users can assign their own link flair.
+    ``can_assign_user_flair`` Whether users can assign their own user flair.
+    ``created_utc``           Time the subreddit was created, represented in`Unix
+                              Time`_.
+    ``description``           Subreddit description, in Markdown.
+    ``description_html``      Subreddit description, in HTML.
+    ``display_name``          Name of the subreddit.
+    ``id``                    ID of the subreddit.
+    ``name``                  Fullname of the subreddit.
+    ``over18``                Whether the subreddit is NSFW.
+    ``public_description``    Description of the subreddit, shown in searches and on the
+                              "You must be invited to visit this community" page (if
+                              applicable).
+    ``spoilers_enabled``      Whether the spoiler tag feature is enabled.
+    ``subscribers``           Count of subscribers.
+    ``user_is_banned``        Whether the authenticated user is banned.
+    ``user_is_moderator``     Whether the authenticated user is a moderator.
+    ``user_is_subscriber``    Whether the authenticated user is subscribed.
+    ========================= ==========================================================
 
     .. note::
 
@@ -108,7 +108,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         in a 403 error. Trying to retrieve attributes of a banned subreddit will result
         in a 404 error.
 
-    .. _Unix Time: https://en.wikipedia.org/wiki/Unix_time
+    .. _unix time: https://en.wikipedia.org/wiki/Unix_time
 
     """
 
@@ -239,7 +239,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         .. code-block:: python
 
             for ban in reddit.subreddit("SUBREDDIT").banned():
-                print(f'{ban}: {ban.note}')
+                print(f"{ban}: {ban.note}")
 
         """
         return SubredditRelationship(self, "banned")
@@ -263,7 +263,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
 
             collection = reddit.subreddit("SUBREDDIT").collections("some_uuid")
             collection = reddit.subreddit("SUBREDDIT").collections(
-                permalink='https://reddit.com/r/SUBREDDIT/collection/some_uuid'
+                permalink="https://reddit.com/r/SUBREDDIT/collection/some_uuid"
             )
 
         """
@@ -373,7 +373,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         .. code-block:: python
 
             for moderator in reddit.subreddit("SUBREDDIT").moderator():
-                print(f'{moderator}: {moderator.mod_permissions}')
+                print(f"{moderator}: {moderator.mod_permissions}")
 
         """
         return ModeratorRelationship(self, "moderator")
@@ -401,7 +401,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         .. code-block:: python
 
             for mute in reddit.subreddit("redditdev").muted():
-                print(f'{mute}: {mute.note}')
+                print(f"{mute}: {mute.note}")
 
         """
         return SubredditRelationship(self, "muted")
@@ -554,6 +554,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         """Convert a Markdown string to a dict for use with the ``richtext_json`` param.
 
         :param markdown_text: A Markdown string to convert.
+
         :returns: A dict in ``richtext_json`` format.
 
         """
@@ -636,9 +637,10 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         :param upload_type: One of ``link``, ``gallery'', or ``selfpost``. (default:
             ``link``)
 
-        :returns: A tuple containing ``(media_url, websocket_url)`` for the
-            piece of media. The websocket URL can be used to determine when
-            media processing is finished, or it can be ignored.
+        :returns: A tuple containing ``(media_url, websocket_url)`` for the piece of
+            media. The websocket URL can be used to determine when media processing is
+            finished, or it can be ignored.
+
         """
         if media_path is None:
             media_path = join(
@@ -707,24 +709,24 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
 
         The returned dict contains the following keys:
 
-        * ``domain_blacklist``
-        * ``body_restriction_policy``
-        * ``domain_whitelist``
-        * ``title_regexes``
-        * ``body_blacklisted_strings``
-        * ``body_required_strings``
-        * ``title_text_min_length``
-        * ``is_flair_required``
-        * ``title_text_max_length``
-        * ``body_regexes``
-        * ``link_repost_age``
-        * ``body_text_min_length``
-        * ``link_restriction_policy``
-        * ``body_text_max_length``
-        * ``title_required_strings``
-        * ``title_blacklisted_strings``
-        * ``guidelines_text``
-        * ``guidelines_display_policy``
+        - ``domain_blacklist``
+        - ``body_restriction_policy``
+        - ``domain_whitelist``
+        - ``title_regexes``
+        - ``body_blacklisted_strings``
+        - ``body_required_strings``
+        - ``title_text_min_length``
+        - ``is_flair_required``
+        - ``title_text_max_length``
+        - ``body_regexes``
+        - ``link_repost_age``
+        - ``body_text_min_length``
+        - ``link_restriction_policy``
+        - ``body_text_max_length``
+        - ``title_required_strings``
+        - ``title_blacklisted_strings``
+        - ``guidelines_text``
+        - ``guidelines_display_policy``
 
         For example, to fetch the post requirements for ``r/test``:
 
@@ -811,7 +813,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         :param number: Specify which sticky to return. 1 appears at the top (default:
             1).
 
-        Raises ``prawcore.NotFound`` if the sticky does not exist.
+        :raises: ``prawcore.NotFound`` if the sticky does not exist.
 
         For example, to get the stickied post on the subreddit ``r/test``:
 
@@ -844,7 +846,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         discussion_type=None,
         inline_media=None,
     ):  # noqa: D301
-        """Add a submission to the subreddit.
+        r"""Add a submission to the subreddit.
 
         :param title: The title of the submission.
         :param selftext: The Markdown formatted content for a ``text`` submission. Use
@@ -867,6 +869,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             traditional comments (default: None).
         :param inline_media: A dict of :class:`.InlineMedia` objects where the key is
             the placeholder name in ``selftext``.
+
         :returns: A :class:`~.Submission` object for the newly created submission.
 
         Either ``selftext`` or ``url`` can be provided, but not both.
@@ -876,7 +879,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
         .. code-block:: python
 
             title = "PRAW documentation"
-            url = 'https://praw.readthedocs.io'
+            url = "https://praw.readthedocs.io"
             reddit.subreddit("reddit_api_test").submit(title, url=url)
 
         For example to submit a self post with inline media do:
@@ -889,13 +892,13 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             image = InlineImage("path/to/image.jpg", "optional caption")
             video = InlineVideo("path/to/video.mp4", "optional caption")
             selftext = "Text with a gif {gif1} an image {image1} and a video {video1} inline"
-            media = {'gif1': gif, 'image1': image, 'video1': video}
-            reddit.subreddit('redditdev').submit('title', selftext=selftext, inline_media=media)
+            media = {"gif1": gif, "image1": image, "video1": video}
+            reddit.subreddit("redditdev").submit("title", selftext=selftext, inline_media=media)
 
         .. note::
 
-            Inserted media will have a padding of `\n\n` automatically added. This due
-            to the weirdness with Reddit's API. Using the example above the result
+            Inserted media will have a padding of ``\\n\\n`` automatically added. This
+            due to the weirdness with Reddit's API. Using the example above, the result
             selftext body will look like so:
 
             .. code-block::
@@ -914,7 +917,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
 
                 inline
 
-        .. seealso ::
+        .. seealso::
 
             * :meth:`.submit_image` to submit images
             * :meth:`.submit_video` to submit videos and videogifs
@@ -992,6 +995,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             when comments are made to the submission (default: True).
         :param spoiler: Whether or not the submission should be marked asa spoiler
             (default: False).
+
         :returns: A :class:`.Submission` object for the newly created submission.
 
         If ``image_path`` in ``images`` refers to a file that is not an image, PRAW will
@@ -1019,12 +1023,12 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             ]
             reddit.subreddit("reddit_api_test").submit_gallery(title, images)
 
-        .. seealso ::
+        .. seealso::
 
-           * :meth:`.submit` to submit url posts and selftexts
-           * :meth:`.submit_image`. to submit single images
-           * :meth:`.submit_poll` to submit polls
-           * :meth:`.submit_video`. to submit videos and videogifs
+            * :meth:`.submit` to submit url posts and selftexts
+            * :meth:`.submit_image`. to submit single images
+            * :meth:`.submit_poll` to submit polls
+            * :meth:`.submit_video`. to submit videos and videogifs
 
         """
         self._validate_gallery(images)
@@ -1106,8 +1110,9 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             anything. (default: ``False``).
         :param discussion_type: Set to ``CHAT`` to enable live discussion instead of
             traditional comments (default: None).
-        :returns: A :class:`.Submission` object for the newly created submission,
-            unless ``without_websockets`` is ``True``.
+
+        :returns: A :class:`.Submission` object for the newly created submission, unless
+            ``without_websockets`` is ``True``.
 
         If ``image_path`` refers to a file that is not an image, PRAW will raise a
         :class:`.ClientException`.
@@ -1133,11 +1138,11 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             image = "/path/to/image.png"
             reddit.subreddit("reddit_api_test").submit_image(title, image)
 
-        .. seealso ::
+        .. seealso::
 
-           * :meth:`.submit` to submit url posts and selftexts
-           * :meth:`.submit_video`. to submit videos and videogifs
-           * :meth:`.submit_gallery`. to submit more than one image in the same post
+            * :meth:`.submit` to submit url posts and selftexts
+            * :meth:`.submit_video`. to submit videos and videogifs
+            * :meth:`.submit_gallery`. to submit more than one image in the same post
 
         """
         data = {
@@ -1208,6 +1213,7 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             (default: False).
         :param discussion_type: Set to ``CHAT`` to enable live discussion instead of
             traditional comments (default: None).
+
         :returns: A :class:`~.Submission` object for the newly created submission.
 
         For example to submit a poll to ``r/reddit_api_test`` do:
@@ -1289,11 +1295,12 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             anything. (default: ``False``).
         :param discussion_type: Set to ``CHAT`` to enable live discussion instead of
             traditional comments (default: None).
+
         :returns: A :class:`.Submission` object for the newly created submission, unless
             ``without_websockets`` is ``True``.
 
-        If ``video_path`` refers to a file that is not a video, PRAW will
-        raise a :class:`.ClientException`.
+        If ``video_path`` refers to a file that is not a video, PRAW will raise a
+        :class:`.ClientException`.
 
         .. note::
 
@@ -1316,11 +1323,11 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
             video = "/path/to/video.mp4"
             reddit.subreddit("reddit_api_test").submit_video(title, video)
 
-        .. seealso ::
+        .. seealso::
 
-           * :meth:`.submit` to submit url posts and selftexts
-           * :meth:`.submit_image` to submit images
-           * :meth:`.submit_gallery`. to submit more than one image in the same post
+            * :meth:`.submit` to submit url posts and selftexts
+            * :meth:`.submit_image` to submit images
+            * :meth:`.submit_gallery`. to submit more than one image in the same post
 
         """
         data = {
@@ -1381,9 +1388,9 @@ class Subreddit(MessageableMixin, SubredditListingMixin, FullnameMixin, RedditBa
     def traffic(self):
         """Return a dictionary of the subreddit's traffic statistics.
 
-        Raises ``prawcore.NotFound`` when the traffic stats aren't available to the
-        authenticated user, that is, they are not public and the authenticated user is
-        not a moderator of the subreddit.
+        :raises: ``prawcore.NotFound`` when the traffic stats aren't available to the
+            authenticated user, that is, they are not public and the authenticated user
+            is not a moderator of the subreddit.
 
         The traffic method returns a dict with three keys. The keys are ``day``,
         ``hour`` and ``month``. Each key contains a list of lists with 3 or 4 values.
@@ -1486,7 +1493,7 @@ class SubredditFilters:
 
             reddit.subreddit("all-redditdev-learnpython")
 
-        Raises ``prawcore.NotFound`` when calling on a non-special subreddit.
+        :raises: ``prawcore.NotFound`` when calling on a non-special subreddit.
 
         """
         url = API_PATH["subreddit_filter"].format(
@@ -1501,7 +1508,7 @@ class SubredditFilters:
 
         :param subreddit: The subreddit to remove from the filter list.
 
-        Raises ``prawcore.NotFound`` when calling on a non-special subreddit.
+        :raises: ``prawcore.NotFound`` when calling on a non-special subreddit.
 
         """
         url = API_PATH["subreddit_filter"].format(
@@ -1686,6 +1693,7 @@ class SubredditFlair:
             ``flair_list`` ((default: "")).
         :param css_class: The css class to use when not explicitly provided in
             ``flair_list`` ((default: "")).
+
         :returns: List of dictionaries indicating the success or failure of each update.
 
         For example to clear the flair text, and set the ``praw`` flair css class on a
@@ -1877,7 +1885,6 @@ class SubredditRedditorFlairTemplates(SubredditFlairTemplates):
 
             for template in reddit.subreddit("NAME").flair.templates:
                 print(template)
-
 
         """
         url = API_PATH["user_flair"].format(subreddit=self.subreddit)
@@ -2444,10 +2451,9 @@ class SubredditModerationStream:
     ):
         """Yield new-modmail conversations as they become available.
 
-        :param other_subreddits: A list of :class:`.Subreddit` instances for
-            which to fetch conversations (default: None).
-        :param sort: Can be one of: mod, recent, unread, user
-            (default: recent).
+        :param other_subreddits: A list of :class:`.Subreddit` instances for which to
+            fetch conversations (default: None).
+        :param sort: Can be one of: mod, recent, unread, user (default: recent).
         :param state: Can be one of: all, appeals, archived, default, highlighted,
             inbox, inprogress, mod, new, notifications (default: all). "all" does not
             include mod or archived conversations. "inbox" does not include appeals
@@ -2638,7 +2644,7 @@ class SubredditRelationship:
     .. code-block:: python
 
         for ban in reddit.subreddit("redditdev").banned():
-            print(f'{ban}: {ban.note}')
+            print(f"{ban}: {ban.note}")
 
     """
 
@@ -2759,7 +2765,7 @@ class ModeratorRelationship(SubredditRelationship):
         .. code-block:: python
 
             for moderator in reddit.subreddit("SUBREDDIT").moderator():
-                print(f'{moderator}: {moderator.mod_permissions}')
+                print(f"{moderator}: {moderator.mod_permissions}")
 
         """
         params = {} if redditor is None else {"user": redditor}
@@ -2822,21 +2828,21 @@ class ModeratorRelationship(SubredditRelationship):
             :class:`~.Redditor` instance. This is useful to confirm if a relationship
             exists, or to fetch the metadata associated with a particular relationship
             (default: None).
-        :param fetch_all: If True, all invited moderators are fetched.
-            (default: False)
+        :param fetch_all: If True, all invited moderators are fetched. (default: False)
 
             .. note::
 
                 If True, requests will be made until all invited moderators are fetched.
+
 
         Additional keyword arguments are passed in the initialization of
         :class:`.ListingGenerator`.
 
         .. note::
 
-            Unlike other usages of :class:`.ListingGenerator`, ``limit`` has no effect in
-            the quantity returned. This endpoint always returns moderators in batches of
-            25 at a time regardless of what ``limit`` is set to.
+            Unlike other usages of :class:`.ListingGenerator`, ``limit`` has no effect
+            in the quantity returned. This endpoint always returns moderators in batches
+            of 25 at a time regardless of what ``limit`` is set to.
 
         Usage:
 
@@ -3012,7 +3018,9 @@ class Modmail:
         :param state: Can be one of: all, archived, highlighted, inprogress, mod, new,
             notifications, or appeals, (default: all). "all" does not include internal,
             archived, or appeals conversations.
-        :returns: A list of :class:`.ModmailConversation` instances that were marked read.
+
+        :returns: A list of :class:`.ModmailConversation` instances that were marked
+            read.
 
         For example, to mark all notifications for a subreddit as read:
 
@@ -3089,6 +3097,7 @@ class Modmail:
             :class:`.Redditor`.
         :param author_hidden: When True, author is hidden from non-moderators (default:
             False).
+
         :returns: A :class:`.ModmailConversation` object for the newly created
             conversation.
 
@@ -3312,8 +3321,8 @@ class SubredditStylesheet:
     def delete_banner_additional_image(self):
         """Remove the current subreddit (redesign) banner additional image.
 
-        Succeeds even if there is no additional image.  Will also delete any
-        configured hover image.
+        Succeeds even if there is no additional image. Will also delete any configured
+        hover image.
 
         For example:
 
@@ -3425,15 +3434,16 @@ class SubredditStylesheet:
         :param name: The name to use for the image. If an image already exists with the
             same name, it will be replaced.
         :param image_path: A path to a jpeg or png image.
+
         :returns: A dictionary containing a link to the uploaded image under the key
             ``img_src``.
 
-        Raises ``prawcore.TooLarge`` if the overall request body is too large.
+        :raises: ``prawcore.TooLarge`` if the overall request body is too large.
 
-        Raises :class:`.RedditAPIException` if there are other issues with the uploaded
-        image. Unfortunately the exception info might not be very specific, so try
-        through the website with the same image to see what the problem actually might
-        be.
+        :raises: :class:`.RedditAPIException` if there are other issues with the
+            uploaded image. Unfortunately the exception info might not be very specific,
+            so try through the website with the same image to see what the problem
+            actually might be.
 
         For example:
 
@@ -3449,12 +3459,12 @@ class SubredditStylesheet:
 
         :param image_path: A path to a jpeg or png image.
 
-        Raises ``prawcore.TooLarge`` if the overall request body is too large.
+        :raises: ``prawcore.TooLarge`` if the overall request body is too large.
 
-        Raises :class:`.RedditAPIException` if there are other issues with the
-        uploaded image. Unfortunately the exception info might not be very
-        specific, so try through the website with the same image to see what
-        the problem actually might be.
+        :raises: :class:`.RedditAPIException` if there are other issues with the
+            uploaded image. Unfortunately the exception info might not be very specific,
+            so try through the website with the same image to see what the problem
+            actually might be.
 
         For example:
 
@@ -3473,12 +3483,12 @@ class SubredditStylesheet:
         :param image_path: A path to a jpeg or png image.
         :param align: Either ``left``, ``centered``, or ``right``. (default: ``left``).
 
-        Raises ``prawcore.TooLarge`` if the overall request body is too large.
+        :raises: ``prawcore.TooLarge`` if the overall request body is too large.
 
-        Raises :class:`.RedditAPIException` if there are other issues with the uploaded
-        image. Unfortunately the exception info might not be very specific, so try
-        through the website with the same image to see what the problem actually might
-        be.
+        :raises: :class:`.RedditAPIException` if there are other issues with the
+            uploaded image. Unfortunately the exception info might not be very specific,
+            so try through the website with the same image to see what the problem
+            actually might be.
 
         For example:
 
@@ -3510,12 +3520,12 @@ class SubredditStylesheet:
 
         Fails if the Subreddit does not have an additional image defined
 
-        Raises ``prawcore.TooLarge`` if the overall request body is too large.
+        :raises: ``prawcore.TooLarge`` if the overall request body is too large.
 
-        Raises :class:`.RedditAPIException` if there are other issues with the uploaded
-        image. Unfortunately the exception info might not be very specific, so try
-        through the website with the same image to see what the problem actually might
-        be.
+        :raises: :class:`.RedditAPIException` if there are other issues with the
+            uploaded image. Unfortunately the exception info might not be very specific,
+            so try through the website with the same image to see what the problem
+            actually might be.
 
         For example:
 
@@ -3533,15 +3543,16 @@ class SubredditStylesheet:
         """Upload an image to be used as the Subreddit's header image.
 
         :param image_path: A path to a jpeg or png image.
+
         :returns: A dictionary containing a link to the uploaded image under the key
             ``img_src``.
 
-        Raises ``prawcore.TooLarge`` if the overall request body is too large.
+        :raises: ``prawcore.TooLarge`` if the overall request body is too large.
 
-        Raises :class:`.RedditAPIException` if there are other issues with the uploaded
-        image. Unfortunately the exception info might not be very specific, so try
-        through the website with the same image to see what the problem actually might
-        be.
+        :raises: :class:`.RedditAPIException` if there are other issues with the
+            uploaded image. Unfortunately the exception info might not be very specific,
+            so try through the website with the same image to see what the problem
+            actually might be.
 
         For example:
 
@@ -3556,15 +3567,16 @@ class SubredditStylesheet:
         """Upload an image to be used as the Subreddit's mobile header.
 
         :param image_path: A path to a jpeg or png image.
+
         :returns: A dictionary containing a link to the uploaded image under the key
             ``img_src``.
 
-        Raises ``prawcore.TooLarge`` if the overall request body is too large.
+        :raises: ``prawcore.TooLarge`` if the overall request body is too large.
 
-        Raises :class:`.RedditAPIException` if there are other issues with the uploaded
-        image. Unfortunately the exception info might not be very specific, so try
-        through the website with the same image to see what the problem actually might
-        be.
+        :raises: :class:`.RedditAPIException` if there are other issues with the
+            uploaded image. Unfortunately the exception info might not be very specific,
+            so try through the website with the same image to see what the problem
+            actually might be.
 
         For example:
 
@@ -3579,15 +3591,16 @@ class SubredditStylesheet:
         """Upload an image to be used as the Subreddit's mobile icon.
 
         :param image_path: A path to a jpeg or png image.
+
         :returns: A dictionary containing a link to the uploaded image under the key
             ``img_src``.
 
-        Raises ``prawcore.TooLarge`` if the overall request body is too large.
+        :raises: ``prawcore.TooLarge`` if the overall request body is too large.
 
-        Raises :class:`.RedditAPIException` if there are other issues with the uploaded
-        image. Unfortunately the exception info might not be very specific, so try
-        through the website with the same image to see what the problem actually might
-        be.
+        :raises: :class:`.RedditAPIException` if there are other issues with the
+            uploaded image. Unfortunately the exception info might not be very specific,
+            so try through the website with the same image to see what the problem
+            actually might be.
 
         For example:
 

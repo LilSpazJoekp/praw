@@ -1,8 +1,8 @@
 Comment Extraction and Parsing
 ==============================
 
-A common use for Reddit's API is to extract comments from submissions and use
-them to perform keyword or phrase analysis.
+A common use for Reddit's API is to extract comments from submissions and use them to
+perform keyword or phrase analysis.
 
 As always, you need to begin by creating an instance of :class:`.Reddit`:
 
@@ -15,7 +15,7 @@ As always, you need to begin by creating an instance of :class:`.Reddit`:
         client_id="CLIENT_ID",
         client_secret="CLIENT_SECRET",
         username="USERNAME",
-        password="PASSWORD"
+        password="PASSWORD",
     )
 
 .. note::
@@ -24,8 +24,8 @@ As always, you need to begin by creating an instance of :class:`.Reddit`:
     optional.
 
 In this document, we will detail the process of finding all the comments for a given
-submission. If you instead want to process all comments on Reddit, or comments belonging to
-one or more specific subreddits, please see
+submission. If you instead want to process all comments on Reddit, or comments belonging
+to one or more specific subreddits, please see
 :meth:`praw.models.reddit.subreddit.SubredditStream.comments`.
 
 .. _extracting_comments:
