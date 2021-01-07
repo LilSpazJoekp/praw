@@ -18,11 +18,12 @@ extras = {
     "dev": ["pre-commit"],
     "lint": [
         "black",
+        "docstrfmt",
         "flake8",
+        "flynt",
         "pydocstyle",
         "sphinx<3.0",
         "sphinx_rtd_theme",
-        "flynt",
     ],
     "readthedocs": ["sphinx<3.0"],
     "test": [
