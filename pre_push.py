@@ -45,12 +45,6 @@ def run_static():
     success &= do_process(
         [
             sys.executable,
-            path.join(current_directory, "tools", "check_docstring.py"),
-        ]
-    )
-    success &= do_process(
-        [
-            sys.executable,
             path.join(current_directory, "tools", "static_word_checks.py"),
             "--replace",
         ]
